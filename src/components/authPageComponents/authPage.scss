@@ -1,0 +1,30 @@
+.login-container {
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: auto;
+
+    div {
+        display: flex;
+    }
+}
+
+.info-message {
+    width: 50%;
+    border: none !important;
+
+    .message {
+        display: flex;
+        flex-direction: column-reverse;
+
+    }
+}
+
+.form-auth-container {
+    width: 60%;
+    margin: 30px 20px;
+    // background-color: red;
+}

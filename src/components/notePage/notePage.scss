@@ -1,0 +1,7 @@
+.note-page-container {
+    display: flex;
+
+    .note-space-page {
+        width: calc(100% - 400px);
+    }
+}
