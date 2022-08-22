@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form';
+import { NoteContext } from '../../context/NoteContext';
 import './formAuth.scss'
 
 type FormValues = {
@@ -8,6 +9,9 @@ type FormValues = {
 };
 
 export const LoginForm = () => {
+
+    const { loginUser } = useContext(NoteContext)
+
     const {
         register,
         formState: { errors },
@@ -15,8 +19,9 @@ export const LoginForm = () => {
     } = useForm<FormValues>();
 
     const onSubmit = (data: any) => {
-        console.log(data);
+        loginUser(data)
     };
+
     return (
         <section className="nes-container with-title is-centered" >
             <p className="title nes-text is-primary">Iniciar</p>

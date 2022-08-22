@@ -1,5 +1,7 @@
-import React, { useRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import { useForm } from 'react-hook-form';
+import { NoteContext } from '../../context/NoteContext';
+import { registerUser } from '../../helpers/httpRequest';
 import './formAuth.scss'
 
 type FormValues = {
@@ -10,6 +12,8 @@ type FormValues = {
 };
 
 export const RegisterForm = () => {
+    const { registerUser } = useContext(NoteContext)
+
     const {
         register,
         formState: { errors },
@@ -20,9 +24,12 @@ export const RegisterForm = () => {
     const password = useRef({});
     password.current = watch('password', '');
 
+
     const onSubmit = (data: any) => {
-        console.log(data);
+        registerUser(data)
     };
+
+
     return (
         <section className="nes-container with-title is-centered" >
             <p className="title nes-text is-primary">Registrarse</p>

@@ -8,4 +8,6 @@ export interface Note {
 export interface NoteState {
     notes: Note[],
     noteId: any,
+    isLogin: boolean,
+    dataUser: object,
 }
