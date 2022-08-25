@@ -1,9 +1,15 @@
 import React, { useContext } from 'react'
 import { NoteContext } from '../context/NoteContext';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
 export const PublicRoute = ({ children }: any) => {
-    const { noteState } = useContext(NoteContext)
-
-    return noteState.isLogin ? <Navigate to={`/home`} /> : children;
+    const { valuesAuth } = useContext(NoteContext)
+    if (valuesAuth.isAuthenticated) {
+        return <Navigate to='/home' />
+    }
+    return (
+        <div>
+            <Outlet />
+        </div>
+    )
 }

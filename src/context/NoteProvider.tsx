@@ -1,4 +1,4 @@
-import React, { Children, useReducer } from 'react'
+import React, { Children, useCallback, useMemo, useReducer, useState } from 'react'
 import axios from 'axios';
 import { Note, NoteState } from '../interfaces/interfaces'
 import { NoteContext } from './NoteContext'
@@ -9,68 +9,212 @@ interface Props {
     children: JSX.Element | JSX.Element[]
 }
 
-const datamockup: Note[] = [
-    {
-        id: '1',
-        name: "mercado",
-        text: "mi lista de mercado, papas camotes huevos",
-        favorite: false
-    }, {
-        id: '2',
-        name: "universidad",
-        text: "estudiar para ...",
-        favorite: false
-    }
-]
-
 const initial_state: NoteState = {
-    notes: datamockup,
+    notes: [],
     noteId: '',
+    notification: [],
     isLogin: false,
     dataUser: {},
+    NoteSpaceView: 'hidden',
+    avatarImage: 'mario',
 }
 
 export const NoteProvider = ({ children }: Props) => {
 
+    const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('token'))
+
     const [noteState, dispatch] = useReducer(noteReducer, initial_state)
 
     const noteId = (id: string) => {
-        dispatch({ type: 'noteId', payload: { id: id } })
+        dispatch({ type: 'noteId', payload: id })
     }
-    const loginUser = async (data: any) => {
+    const notification = (isNotification: boolean, type: string) => {
+        dispatch({ type: 'notification', payload: [isNotification, type] })
+    }
+
+    const noteSpaceView = (view: string) => {
+        dispatch({ type: 'NoteSpaceView', payload: view })
+    }
+
+    const avatar = (avatarImage: string) => {
+        dispatch({ type: 'avatarImage', payload: avatarImage })
+    }
+
+    const logout = useCallback(function () {
+        window.localStorage.removeItem('token')
+        setIsAuthenticated(null)
+        dispatch({ type: 'isLogin', payload: { isLogin: false } })
+        dispatch({ type: 'dataUser', payload: { dataUser: {} } })
+        dispatch({ type: 'NoteSpaceView', payload: 'hidden' })
+    }, []);
+
+    const loginUser = useCallback(async (data: any) => {
         try {
             const response = await axios.post(`${BASE_URL}/api/user/login`, {
                 email: data.email,
                 password: data.password,
             });
             if (response.data.ok) {
-                localStorage.setItem('token', response.data.token);
+                window.localStorage.setItem('token', response.data.token);
+                setIsAuthenticated(response.data.token)
                 dispatch({ type: 'isLogin', payload: { isLogin: true } })
-                dispatch({ type: 'dataUser', payload: { dataUser: response.data.data } })
+                dispatch({ type: 'dataUser', payload: response.data.data })
             }
         } catch (error) {
             console.log(error);
         }
-    };
+    }, []);
 
-    const registerUser = async (data: any) => {
+    const registerUser = useCallback(async (data: any) => {
         try {
+            console.log(data)
             const response = await axios.post(`${BASE_URL}/api/user/`, {
                 name: data.fullName,
                 email: data.email,
                 password: data.password,
+                avatar: data.avatar,
             });
             if (response.data.ok) {
-                localStorage.setItem('token', response.data.token);
+                console.log(response.data)
+                window.localStorage.setItem('token', response.data.token);
+                setIsAuthenticated(response.data.token)
                 dispatch({ type: 'isLogin', payload: { isLogin: true } })
-                dispatch({ type: 'dataUser', payload: { dataUser: response.data.data } })
+                dispatch({ type: 'dataUser', payload: response.data.data })
             }
         } catch (error) {
             console.log(error);
         }
-    };
+    }, []);
+
+    const valuesAuth = useMemo(
+        () => ({
+            loginUser,
+            registerUser,
+            logout,
+            isAuthenticated
+        }), [loginUser, registerUser, logout, isAuthenticated]
+    )
+
+    // notes
+
+    const getNotes = async () => {
+        try {
+            const token = localStorage.getItem('token') || '';
+            if (!token) {
+                return false;
+            }
+            const response = await axios.get(`${BASE_URL}/api/note/`, {
+                headers: {
+                    'x-token': token,
+                },
+            })
+            dispatch({ type: 'notesByUser', payload: response.data.data })
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const createNote = useCallback(async (data: any) => {
+        try {
+            const token = localStorage.getItem('token') || '';
+            if (!token) {
+                return false;
+            }
+            const response = await axios.post(`${BASE_URL}/api/note/`, {
+                name: data.name,
+                text: data.text,
+                favorite: data.favorite
+            }, {
+                headers: {
+                    'x-token': token,
+                },
+            }
+            );
+            if (response.data.ok) {
+                notification(true, 'note created')
+                noteId(response.data.data.id)
+                noteSpaceView('showCurrentNote')
+                dispatch({ type: 'addNote', payload: response.data.data })
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }, []);
+
+    const getNoteById = useCallback(async (id: string) => {
+        try {
+            const token = localStorage.getItem('token') || '';
+            if (!token) {
+                return false;
+            }
+            const response = await axios.get(`${BASE_URL}/api/note/${id}`, {
+                headers: {
+                    'x-token': token,
+                },
+            }
+            );
+            if (response.data.ok) {
+                dispatch({ type: 'updateNote', payload: response.data.data })
+                notification(true, 'note updated')
+                noteSpaceView('showCurrentNote')
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }, []);
+
+    const updateNote = useCallback(async (data: any, id: string) => {
+        try {
+            const token = localStorage.getItem('token') || '';
+            if (!token) {
+                return false;
+            }
+            const response = await axios.put(`${BASE_URL}/api/note/update/${id}`, {
+                name: data.name,
+                text: data.text,
+                favorite: data.favorite
+            }, {
+                headers: {
+                    'x-token': token,
+                },
+            }
+            );
+
+            if (response.data.ok) {
+                getNoteById(id)
+                noteId(response.data.data.id)
+
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }, []);
+
+    const deleteNote = useCallback(async (id: string) => {
+        try {
+            const token = localStorage.getItem('token') || '';
+            if (!token) {
+                return false;
+            }
+
+            const response = await axios.delete(`${BASE_URL}/api/note/delete/${id}`, {
+                headers: {
+                    'x-token': token,
+                },
+            }
+            );
+
+            if (response.data.ok) {
+                dispatch({ type: 'deleteNote', payload: response.data.data })
+                notification(true, 'note deleted')
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }, []);
 
     return (
-        <NoteContext.Provider value={{ noteState, noteId, loginUser, registerUser }}>{children}</NoteContext.Provider>
+        <NoteContext.Provider value={{ noteState, noteId, notification, logout, loginUser, registerUser, valuesAuth, getNotes, noteSpaceView, createNote, updateNote, deleteNote, avatar }}>{children}</NoteContext.Provider>
     )
 }

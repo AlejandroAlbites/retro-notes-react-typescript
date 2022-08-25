@@ -1,5 +1,20 @@
 .nav-bar-container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 10px !important;
+
+    div {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: center;
+
+        i {
+            margin-left: 20px;
+            width: 160px;
+            height: 110px;
+        }
+
+    }
 }

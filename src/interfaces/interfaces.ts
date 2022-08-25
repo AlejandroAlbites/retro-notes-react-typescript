@@ -8,6 +8,9 @@ export interface Note {
 export interface NoteState {
     notes: Note[],
     noteId: any,
+    notification: Array<any>,
     isLogin: boolean,
     dataUser: object,
+    NoteSpaceView: string,
+    avatarImage: string,
 }

@@ -1,0 +1,15 @@
+.form-create-note-container {
+    padding: 20px;
+    border-right: 4px solid #000;
+    border-bottom: 4px solid #000;
+    height: calc(100vh - 138px);
+
+    .btn-save-note {
+        margin-top: 20px;
+    }
+
+    textArea {
+        min-height: 250px;
+        margin-bottom: 20px;
+    }
+}

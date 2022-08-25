@@ -31,7 +31,7 @@ export const LoginForm = () => {
                         Correo
                     </label>
                     <input
-                        className="nes-input"
+                        className="nes-input input-form"
                         {...register("email")}
                         type="email"
                         id="name_field"
@@ -42,12 +42,12 @@ export const LoginForm = () => {
                         })}
                     />
                     {errors.email?.type === 'required' && (
-                        <p className="nes-text is-error">
+                        <p className="nes-text is-error-validation">
                             ⚠ El campo correo es requerido
                         </p>
                     )}
                     {errors.email?.type === 'pattern' && (
-                        <p className="nes-text is-error">
+                        <p className="nes-text is-error-validation">
                             ⚠ El formato del correo no es el correcto
                         </p>
                     )}
@@ -55,7 +55,7 @@ export const LoginForm = () => {
                         Contraseña
                     </label>
                     <input
-                        className="nes-input"
+                        className="nes-input input-form"
                         {...register("password")}
                         type="password"
                         id="name_field"
@@ -68,14 +68,15 @@ export const LoginForm = () => {
                         })}
                     />
                     {errors.password?.type === 'required' && (
-                        <p className="nes-text is-error">
+                        <p className="nes-text is-error-validation">
                             ⚠ El campo contraseña es requerido
                         </p>
                     )}
+
                     <input
                         type="submit"
                         value="Iniciar sesión"
-                        className="nes-btn is-success"
+                        className="nes-btn is-success btn-form"
                     />
                 </form>
             </main>

@@ -9,11 +9,80 @@
     display: flex;
     flex-shrink: 0;
     flex-direction: column;
-    max-width: 400px;
     width: 100%;
     text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.is-error-validation {
+    font-size: 10px;
+    color: #e76e55;
 }
 
 .nes-input {
     margin-bottom: 20px !important;
+}
+
+.register-form-data {
+    display: flex;
+
+
+    div {
+        display: flex;
+        flex-direction: column;
+        margin-right: 10px;
+
+    }
+}
+
+.input-form {
+    font-size: 12px;
+
+    &::placeholder {
+        font-size: 12px;
+    }
+}
+
+.btn-form {
+
+    width: 80%;
+}
+
+.select-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.select-avatar-container {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    width: 240px;
+    height: 110px;
+
+    div {
+        margin: 0 20px;
+        width: 130px;
+
+        i {
+            margin: auto;
+        }
+    }
+
+    .btn-select-avatar {
+        border: 3px solid #212529;
+        width: 35px;
+        height: auto;
+        background-color: lightgrey;
+        margin: auto;
+        text-align: center;
+
+        &:hover {
+            background-color: gray;
+        }
+    }
 }

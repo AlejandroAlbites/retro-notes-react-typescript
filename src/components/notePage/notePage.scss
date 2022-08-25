@@ -5,3 +5,11 @@
         width: calc(100% - 400px);
     }
 }
+
+.hidden-container {
+    background-color: lavender;
+    width: 100%;
+    height: calc(100vh - 138px);
+    border-right: 4px solid #000;
+    border-bottom: 4px solid #000;
+}
