@@ -49,7 +49,7 @@ export const UpdateNote = () => {
                         Título de la nota
                     </label>
                     <input
-                        className="nes-input"
+                        className="nes-input input-form"
                         {...register("name")}
                         type="text"
                         id="name_field"
@@ -67,7 +67,7 @@ export const UpdateNote = () => {
                         Contenido
                     </label>
                     <textarea
-                        className="nes-textarea"
+                        className="nes-textarea input-form"
                         {...register("text")}
                         id="textarea_field"
                         placeholder="Escribe tus notas aquí"
@@ -81,7 +81,7 @@ export const UpdateNote = () => {
                         </p>
                     )}
 
-                    <label htmlFor="name_field">Marcar favorito</label>
+                    <label htmlFor="name_field" className="name_field">Marcar favorito</label>
                     <div>
                         {
                             isFavorite ? <i className="nes-icon is-large star" onClick={handleClick}></i> : <i className="nes-icon is-large star is-empty" onClick={handleClick}></i>

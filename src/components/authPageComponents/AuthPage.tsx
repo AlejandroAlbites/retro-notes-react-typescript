@@ -12,13 +12,13 @@ export const AuthPage = () => {
         <main className='auth-container'>
             <div className='login-container'>
                 <div className='header-container'>
-                    <h1><i className="snes-logo"></i> RETRO LISTA DE NOTAS <i className="snes-logo"></i></h1>
+                    <div>
+                        <h1><i className="snes-logo"></i> RETRO LISTA DE NOTAS <i className="snes-logo"></i></h1>
+                    </div>
                     <div className='social-icon-container'>
                         <a href='https://github.com/AlejandroAlbites' target="_blank"><i className="nes-icon github is-large"></i></a>
                         <a href='https://pe.linkedin.com/in/juan-alejandro-albites-tapia-316185112?original_referer=https%3A%2F%2Fwww.google.com%2F'
                             target="_blank"><i className="nes-icon linkedin is-large"></i></a>
-
-
                     </div>
                 </div>
                 <div className='body-container'>

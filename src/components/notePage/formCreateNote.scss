@@ -3,13 +3,14 @@
     border-right: 4px solid #000;
     border-bottom: 4px solid #000;
     height: calc(100vh - 138px);
+    overflow-y: auto;
 
     .btn-save-note {
         margin-top: 20px;
     }
 
     textArea {
-        min-height: 250px;
+        min-height: 210px;
         margin-bottom: 20px;
     }
 }

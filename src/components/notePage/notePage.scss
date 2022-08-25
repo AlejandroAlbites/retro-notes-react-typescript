@@ -1,8 +1,10 @@
 .note-page-container {
+    background-color: lavender;
     display: flex;
 
     .note-space-page {
-        width: calc(100% - 400px);
+        // width: calc(100% - 400px);
+        width: 100%;
     }
 }
 

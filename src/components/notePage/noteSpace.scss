@@ -1,3 +1,7 @@
+@import "../../styles/abstracts/mixins";
+@import "../../styles/abstracts/variables";
+@import '../../styles/base/resets';
+
 .note-space-container {
     background-color: lavender;
     width: 100%;
@@ -6,8 +10,15 @@
     border-bottom: 4px solid #000;
 
     h1 {
-        padding-top: 40px;
+        padding-top: 10px;
     }
+
+    @include sm {
+        h1 {
+            padding-top: 40px;
+        }
+    }
+
 }
 
 .btn-note-options {
@@ -24,13 +35,22 @@
 }
 
 .favorite-container {
-    width: 20px;
-    height: 20px;
-    position: relative;
-    left: 20px;
-    top: 20px;
 
     i {
         margin: 0;
     }
+
+    @include sm {
+        width: 20px;
+        height: 20px;
+        position: relative;
+        left: 20px;
+        top: 20px;
+
+        i {
+            margin: 0;
+        }
+    }
+
+
 }

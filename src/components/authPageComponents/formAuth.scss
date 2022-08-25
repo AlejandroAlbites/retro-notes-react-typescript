@@ -37,11 +37,16 @@
     }
 }
 
+.name_field {
+    font-size: 12px !important;
+}
+
 .input-form {
     font-size: 12px;
 
     &::placeholder {
         font-size: 12px;
+        color: gray;
     }
 }
 
@@ -55,6 +60,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    label {
+        font-size: 12px;
+    }
 }
 
 .select-avatar-container {

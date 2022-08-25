@@ -24,7 +24,7 @@ export const NoteSpace = () => {
 
             {!!noteCurrent?.favorite &&
                 <div className='favorite-container'>
-                    <i className="nes-icon is-large star" onClick={handleClick}></i>
+                    <i className="nes-icon is-large star"></i>
                 </div>
             }
             <h1>{noteCurrent && noteCurrent.name}</h1>
