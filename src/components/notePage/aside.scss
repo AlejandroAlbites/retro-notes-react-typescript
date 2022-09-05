@@ -1,99 +1,131 @@
 @import "../../styles/abstracts/mixins";
 @import "../../styles/abstracts/variables";
-@import '../../styles/base/resets';
+@import "../../styles/base/resets";
 
 .aside-container {
-    width: 500px;
-    border-left: 4px solid #000;
-    border-right: 4px solid #000;
-    border-bottom: 4px solid #000;
-    height: calc(100vh - 138px);
-    overflow-y: auto !important;
+  width: 500px;
+  min-width: 210;
+  border-left: 4px solid #000;
+  border-bottom: 4px solid #000;
+  height: calc(100vh - 80px);
+  overflow-y: auto !important;
+  @include sm {
+    height: calc(100vh - 100px);
+  }
 }
 
 .aside-options {
-    border-bottom: 4px solid #000;
+  border-bottom: 4px solid #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-    button {
-        margin: 15px 0 !important;
+  button {
+    margin: 16px 0;
+    min-height: 38px;
+    font-size: 12px;
+    @include sm {
+      margin: 16px 0;
+      font-size: 16px;
     }
+  }
 
-    label {
-        margin: 15px 0;
+  label {
+    font-size: 12px;
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    span {
+      width: 50%;
+      @include sm {
+        font-size: 16px;
+      }
     }
+  }
 
-    div {
-        margin: 0 10px;
-        display: flex;
-        flex-direction: row-reverse;
+  div {
+    margin: 0 10px;
+    display: flex;
+    flex-direction: row-reverse;
+    position: relative;
+  }
+}
 
-        @include md {
-            display: block;
-        }
-
+.input-search {
+  background-color: white;
+  border-radius: 8px;
+  @include sm {
+    font-size: 16px;
+    &::placeholder {
+      font-size: 16px;
     }
-
+  }
 }
 
 .note-name {
-    padding: 20px;
-    border-bottom: 3px solid #000;
+  font-size: 12px;
+  padding: 20px;
+  border-bottom: 3px solid #000;
 
-
-    &:hover {
-        background-color: lightgray;
-    }
+  &:hover {
+    background-color: rgb(238, 238, 238);
+  }
+  @include sm {
+    font-size: 16px;
+  }
 }
 
 .note-name-select {
-    padding: 20px;
-    border-bottom: 3px solid #000;
-    background-color: lavender;
-
-
+  font-size: 12px;
+  padding: 20px;
+  border-bottom: 3px solid #000;
+  background-color: lightgray;
+  @include sm {
+    font-size: 16px;
+  }
 }
 
 .list-note-container {
-    display: flex;
-    justify-content: center;
-
+  display: flex;
+  justify-content: center;
 }
 
 .favorite-star-container {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .img-action-aside {
-    width: 90px;
-    position: relative;
-    right: -20px;
-    top: 5px;
+  position: relative;
+  right: -20px;
+  top: 20px;
+  &:hover {
+    fill: gray;
+  }
 
-    @include md {
-        display: none !important;
-    }
+  @include sm {
+    display: none !important;
+  }
 }
 
 .img-action-aside-hidden {
-    background-color: lavender;
-    width: 100px;
-    height: 100px !important;
-    height: auto;
-    position: relative;
-    cursor: pointer;
-    left: 15px;
-    display: block;
+  position: absolute !important;
+  cursor: pointer;
+  top: 90px;
+  left: 10px;
+  display: block;
+  z-index: 1;
 
-    @include md {
-        display: none !important;
-    }
-
+  @include sm {
+    display: none !important;
+  }
 }
 
 .menu.active {
-    display: block;
+  display: block;
 }
 
 .active {
-    display: none;
+  display: none;
 }

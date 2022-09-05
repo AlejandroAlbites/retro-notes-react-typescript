@@ -1,94 +1,89 @@
 @import "../../styles/abstracts/mixins";
 @import "../../styles/abstracts/variables";
-@import '../../styles/base/resets';
+@import "../../styles/base/resets";
 
 .auth-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .login-container {
-    // margin: 10px auto;
+  // margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+  height: auto;
+
+  div {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+  }
+
+  .body-container {
+    display: flex;
+    flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
-    width: 95%;
-    height: auto;
+    min-height: 500px;
 
-    div {
-        display: flex;
-        align-items: center;
+    @include sm {
+      flex-direction: row;
     }
-
-    .body-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        min-height: 500px;
-
-        @include sm {
-            flex-direction: row;
-        }
-    }
+  }
 }
 
 .info-message {
-    width: 90%;
-    border: none !important;
+  width: 90%;
+  border: none !important;
 
-    .message {
-        display: flex;
-        flex-direction: column-reverse;
-
-    }
+  .message {
+    display: flex;
+    flex-direction: column-reverse;
+  }
 }
 
 .form-auth-container {
-    width: 80%;
-    margin: 30px 20px;
+  width: 80%;
+  margin: 30px 20px;
 }
 
 .footer-container {
-    width: 80%;
-    margin: 10px 20px;
+  width: 80%;
+  margin: 10px 20px;
 }
 
 .header-container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
+  h1 {
+    font-size: 18px;
+  }
+
+  @include md {
     h1 {
-        font-size: 18px;
-
+      font-size: 25px;
     }
 
-    @include md {
-        h1 {
-            font-size: 25px;
+    flex-direction: row;
+    justify-content: space-between;
 
-        }
-
-        flex-direction: row;
-        justify-content: space-between;
-
-        .social-icon-container {
-            position: absolute;
-            right: 10px;
-            top: 10px;
-        }
+    .social-icon-container {
+      position: absolute;
+      right: 10px;
+      top: 10px;
     }
+  }
 }
 
 .social-icon-container {
-    i {
-        margin: 0 10px;
-
-    }
-
+  i {
+    margin: 0 10px;
+  }
 }

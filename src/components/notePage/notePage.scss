@@ -1,17 +1,41 @@
+@import "../../styles/abstracts/mixins";
+@import "../../styles/abstracts/variables";
+@import "../../styles/base/resets";
 .note-page-container {
-    background-color: lavender;
-    display: flex;
+  background-color: lavender;
+  display: flex;
 
-    .note-space-page {
-        // width: calc(100% - 400px);
-        width: 100%;
-    }
+  .note-space-page {
+    width: 100%;
+  }
 }
 
 .hidden-container {
-    background-color: lavender;
-    width: 100%;
-    height: calc(100vh - 138px);
-    border-right: 4px solid #000;
-    border-bottom: 4px solid #000;
+  background-color: lavender;
+  width: 100%;
+  border-right: 4px solid #000;
+  border-bottom: 4px solid #000;
+  border-left: 4px solid #000;
+  height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h2 {
+    padding: 20px 0px;
+    font-size: 12px;
+    @include sm {
+      font-size: 16px;
+    }
+  }
+  p {
+    font-size: 12px;
+    @include sm {
+      font-size: 16px;
+    }
+  }
+  @include sm {
+    height: calc(100vh - 100px);
+  }
 }

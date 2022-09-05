@@ -1,10 +1,31 @@
+@import "../../styles/abstracts/mixins";
+@import "../../styles/abstracts/variables";
+@import "../../styles/base/resets";
 .notification-container {
-    position: absolute;
-    top: 50%;
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  display: flex;
+  @include xs {
+    left: 30%;
+  }
+  @include sm {
     left: 50%;
+  }
 
-    div {
-        position: relative;
-        top: -100px
+  div {
+    width: 180px;
+    position: relative;
+    top: -140px;
+    @include sm {
+      width: 250px;
     }
+  }
+}
+
+.text-notification {
+  font-size: 12px;
+  @include sm {
+    font-size: 16px;
+  }
 }

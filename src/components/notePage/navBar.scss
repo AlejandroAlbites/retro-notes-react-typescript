@@ -1,20 +1,44 @@
+@import "../../styles/abstracts/mixins";
+@import "../../styles/abstracts/variables";
+@import "../../styles/base/resets";
+
 .nav-bar-container {
+  position: absolute;
+  padding: 10px !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  @include sm {
+    height: 100px;
+  }
+  div {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row-reverse;
     align-items: center;
-    padding: 10px !important;
-
-    div {
-        display: flex;
-        flex-direction: row-reverse;
-        align-items: center;
-        justify-content: center;
-
-        i {
-            margin-left: 20px;
-            width: 160px;
-            height: 110px;
-        }
-
+    h1 {
+      margin-left: 8px;
+      padding: 0;
+      font-size: 12px;
+      text-align: left;
+      @include sm {
+        font-size: 16px;
+      }
     }
+    .nes-avatar-img {
+      width: 60px;
+      height: 70px;
+      @include sm {
+        width: 80px;
+        height: 90px;
+      }
+    }
+  }
+}
+
+.btn-logout {
+  font-size: 12px;
+  @include sm {
+    font-size: 16px;
+  }
 }

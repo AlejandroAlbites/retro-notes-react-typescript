@@ -1,16 +1,57 @@
+@import "../../styles/abstracts/mixins";
+@import "../../styles/abstracts/variables";
+@import "../../styles/base/resets";
+
 .form-create-note-container {
-    padding: 20px;
-    border-right: 4px solid #000;
-    border-bottom: 4px solid #000;
-    height: calc(100vh - 138px);
-    overflow-y: auto;
-
-    .btn-save-note {
-        margin-top: 20px;
+  padding: 16px 8px;
+  border-right: 4px solid #000;
+  border-bottom: 4px solid #000;
+  border-left: 4px solid #000;
+  overflow-y: auto;
+  height: calc(100vh - 80px);
+  @include sm {
+    height: calc(100vh - 100px);
+  }
+  .btn-save-note {
+    font-size: 12px;
+    margin-top: 10px;
+    @include sm {
+      font-size: 16px;
     }
+  }
 
-    textArea {
-        min-height: 210px;
-        margin-bottom: 20px;
+  textArea {
+    font-size: 12px;
+    background-color: white;
+    border-radius: 8px;
+    min-height: 180px;
+    margin-bottom: 20px;
+    &::placeholder {
+      font-size: 12px;
     }
+    @include sm {
+      font-size: 16px;
+      min-height: 210px;
+      &::placeholder {
+        font-size: 16px;
+      }
+    }
+  }
+}
+.label-create-note {
+  font-size: 12px;
+  @include sm {
+    font-size: 16px !important;
+  }
+}
+.input-create-note {
+  font-size: 12px;
+  background-color: white;
+  border-radius: 8px;
+  @include sm {
+    font-size: 16px;
+    &::placeholder {
+      font-size: 16px;
+    }
+  }
 }

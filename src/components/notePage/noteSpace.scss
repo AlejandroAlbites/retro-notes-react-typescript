@@ -1,56 +1,68 @@
 @import "../../styles/abstracts/mixins";
 @import "../../styles/abstracts/variables";
-@import '../../styles/base/resets';
+@import "../../styles/base/resets";
 
 .note-space-container {
-    background-color: lavender;
-    width: 100%;
-    height: calc(100vh - 138px);
-    border-right: 4px solid #000;
-    border-bottom: 4px solid #000;
+  position: relative;
+  background-color: lavender;
+  width: 100%;
+  border-right: 4px solid #000;
+  border-bottom: 4px solid #000;
+  border-left: 4px solid #000;
+  height: calc(100vh - 80px);
+  @include sm {
+    height: calc(100vh - 100px);
+    padding-top: 40px;
+  }
 
-    h1 {
-        padding-top: 10px;
-    }
-
+  h1 {
+    padding-top: 10px;
+    font-size: 14px;
     @include sm {
-        h1 {
-            padding-top: 40px;
-        }
+      font-size: 20px;
     }
-
+  }
+  p {
+    font-size: 12px;
+    @include sm {
+      font-size: 16px;
+    }
+  }
 }
 
 .btn-note-options {
-    position: absolute;
-    right: 12px;
-    bottom: 20px;
-    display: flex;
-    flex-direction: column;
+  position: absolute;
+  right: 12px;
+  bottom: 20px;
+  display: flex;
+  flex-direction: column;
 
-    button {
-        width: 160px;
-        margin-bottom: 20px;
+  button {
+    font-size: 12px;
+    margin-bottom: 16px;
+    @include sm {
+      font-size: 16px;
     }
+  }
 }
 
 .favorite-container {
+  i {
+    margin-top: 16px !important;
+  }
+
+  @include sm {
+    position: absolute;
+    left: 16px;
+    top: 16px;
 
     i {
-        margin: 0;
+      margin: 0 !important;
     }
-
-    @include sm {
-        width: 20px;
-        height: 20px;
-        position: relative;
-        left: 20px;
-        top: 20px;
-
-        i {
-            margin: 0;
-        }
-    }
-
-
+  }
+  @include md {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+  }
 }
