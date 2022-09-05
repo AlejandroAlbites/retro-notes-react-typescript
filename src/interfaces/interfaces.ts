@@ -1,5 +1,5 @@
 export interface Note {
-  id: string;
+  _id: string;
   name: string;
   text: string;
   favorite: boolean;

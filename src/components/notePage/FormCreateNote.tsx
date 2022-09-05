@@ -27,6 +27,7 @@ export const FormCreateNote = () => {
       ...data,
       favorite: isFavorite,
     };
+
     createNote(newNote);
   };
 

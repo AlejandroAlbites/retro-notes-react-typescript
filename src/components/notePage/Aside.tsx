@@ -15,13 +15,13 @@ export const Aside = () => {
   const [favoriteFilter, setFavoriteFilter] = useState<boolean>(false);
 
   const noteCurrent: Note | undefined = noteState.notes.find(
-    (note) => note.id === noteState.noteId
+    (note) => note._id === noteState.noteId
   );
 
   const search = noteState.notes.filter((note) =>
     note.name.toLowerCase().includes(newFilter.toLowerCase())
   );
-  const searchFavorite = data.filter((note) => !!note.favorite === true);
+  const searchFavorite = data.filter((note) => note.favorite === true);
   useEffect(() => {
     favoriteFilter ? setData(searchFavorite) : setData(search);
   }, [noteState.notes, newFilter, favoriteFilter]);
@@ -36,8 +36,8 @@ export const Aside = () => {
 
   const handleMenu = () => {
     setShowAsideMenu(!showAsideMenu);
-    console.log(showAsideMenu);
   };
+
   return (
     <>
       <svg
@@ -91,21 +91,23 @@ export const Aside = () => {
           {data.length > 0 &&
             data.map((item) => (
               <div
-                key={item.id}
+                key={item._id}
                 className={
-                  noteCurrent?.id === item.id ? "note-name-select" : "note-name"
+                  noteCurrent?._id === item._id
+                    ? "note-name-select"
+                    : "note-name"
                 }
                 onClick={() => {
-                  noteId(item.id);
+                  noteId(item._id);
                   noteSpaceView("showCurrentNote");
                 }}
               >
                 <div className="list-note-container">
-                  {!!item.favorite === true && (
+                  {item.favorite === true && (
                     <div className="favorite-star-container">
                       <i
                         className="nes-icon is-small star"
-                        onClick={handleClick}
+                        // onClick={handleClick}
                       ></i>
                     </div>
                   )}

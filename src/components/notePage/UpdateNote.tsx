@@ -12,7 +12,7 @@ export const UpdateNote = () => {
   const { updateNote, noteState } = useContext(NoteContext);
 
   const noteCurrent = noteState.notes.find(
-    (note) => note.id === noteState.noteId
+    (note) => note._id === noteState.noteId
   );
 
   const [isFavorite, setIsFavorite] = useState<boolean | undefined>(
@@ -39,6 +39,7 @@ export const UpdateNote = () => {
       ...data,
       favorite: isFavorite,
     };
+
     updateNote(newNote, noteState.noteId);
   };
 

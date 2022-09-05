@@ -6,8 +6,8 @@ export const WelcomePage = () => {
       <i className="nes-logo"></i>
       <h2> Hola, bienvenido a tu espacio para ver tus notas</h2>
       <p>
-        Al lado izquierdo podras crear una nueva nota, filtrarlas o revisar tus
-        notas creadas
+        Al lado izquierdo podrás crear una nueva nota, filtrarlas o revisar tus
+        notas creadas.
       </p>
     </div>
   );

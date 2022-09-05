@@ -82,7 +82,6 @@ export const NoteProvider = ({ children }: Props) => {
 
   const registerUser = useCallback(async (data: any) => {
     try {
-      console.log(data);
       const response = await axios.post(`${BASE_URL}/api/user/`, {
         name: data.fullName,
         email: data.email,
@@ -125,6 +124,7 @@ export const NoteProvider = ({ children }: Props) => {
           "x-token": token,
         },
       });
+
       dispatch({ type: "notesByUser", payload: response.data.data });
     } catch (error) {
       console.log(error);
@@ -152,7 +152,7 @@ export const NoteProvider = ({ children }: Props) => {
       );
       if (response.data.ok) {
         notification(true, "note created");
-        noteId(response.data.data.id);
+        noteId(response.data.data._id);
         noteSpaceView("showCurrentNote");
         dispatch({ type: "addNote", payload: response.data.data });
       }
@@ -173,9 +173,7 @@ export const NoteProvider = ({ children }: Props) => {
         },
       });
       if (response.data.ok) {
-        dispatch({ type: "updateNote", payload: response.data.data });
-        notification(true, "note updated");
-        noteSpaceView("showCurrentNote");
+        console.log(response.data);
       }
     } catch (error) {
       console.log(error);
@@ -194,7 +192,6 @@ export const NoteProvider = ({ children }: Props) => {
         },
       });
       if (response.data.ok) {
-        console.log(response.data);
         dispatch({ type: "isLogin", payload: { isLogin: true } });
         dispatch({ type: "dataUser", payload: response.data.data });
       }
@@ -224,8 +221,9 @@ export const NoteProvider = ({ children }: Props) => {
       );
 
       if (response.data.ok) {
-        getNoteById(id);
-        noteId(response.data.data.id);
+        dispatch({ type: "updateNote", payload: response.data.data });
+        notification(true, "note updated");
+        noteSpaceView("showCurrentNote");
       }
     } catch (error) {
       console.log(error);

@@ -56,7 +56,7 @@ export const NavBar = () => {
   const user: User = noteState.dataUser;
 
   const avatar = arrayAvatar.find((item) => item.name === user.avatar);
-  console.log(avatar);
+
   const handleClick = () => {
     logout();
   };

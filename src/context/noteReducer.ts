@@ -34,7 +34,7 @@ export const noteReducer = (state: NoteState, action: TodoAction) => {
       };
     case "updateNote":
       const notes = state.notes.map((note) =>
-        note.id === action.payload.id ? action.payload : note
+        note._id === action.payload._id ? action.payload : note
       );
       return {
         ...state,
@@ -42,7 +42,7 @@ export const noteReducer = (state: NoteState, action: TodoAction) => {
       };
     case "deleteNote":
       const deleteNotes = state.notes.filter(
-        (note) => note.id !== action.payload.id
+        (note) => note._id !== action.payload._id
       );
       return {
         ...state,
